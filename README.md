@@ -1,5 +1,5 @@
 # quiz-helper
-我是考試王
+我是考試王 for chrome/edge plugin
 
 使用方法:
 去測驗頁面, 送出空白卷之後, 在檢討頁面, 按[掃描]
