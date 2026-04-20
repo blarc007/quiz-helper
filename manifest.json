@@ -1,22 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Quiz Helper",
-  "version": "1.0",
-  "description": "掃描測驗結果並提供提示",
+  "version": "1.1",
+  "description": "自動掃描測驗題目與答案，並在作答頁面提供即時提示。",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
   },
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_popup": "popup/popup.html",
+    "default_icon": "assets/icon.png"
   },
   "permissions": ["activeTab", "storage"],
   "content_scripts": [
     {
       "matches": ["*://*.cht.com.tw/*"],
-      "js": ["content.js"]
+      "js": ["scripts/content.js"]
     }
   ]
 }

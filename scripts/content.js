@@ -67,19 +67,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             const optionText = option.querySelector('.ml-1')?.textContent.trim() || 
                                option.querySelector('.flex-fill.ml-1')?.textContent.trim() || '';
             if (answersToMatch.includes(optionText)) {
-              // 插入圖標
+              // 插入內置 SVG 圖標 (替代原先的外部 URL)
               const dFlex = option.querySelector('.d-flex.w-100');
-              if (dFlex && !dFlex.querySelector('.questioncorrectnessicon')) {
-                const img = document.createElement('img');
-                img.src = 'https://ilearn.elearning.cht.com.tw/theme/image.php/adaptable/core/1744425936/i/grade_answer';
-                img.alt = '';
-                img.className = 'questioncorrectnessicon';
-                img.style.marginRight = '5px';
-                dFlex.insertBefore(img, dFlex.firstChild);
+              if (dFlex && !dFlex.querySelector('.quiz-helper-icon')) {
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'quiz-helper-icon';
+                iconSpan.innerHTML = `
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: middle;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                `;
+                dFlex.insertBefore(iconSpan, dFlex.firstChild);
                 modified = true;
               }
               
-              // 選取checkbox或radio
+              // 自動選取對應的選項 (Checkbox 或 Radio)
               const input = option.querySelector('input[type="checkbox"], input[type="radio"]');
               if (input && !input.checked) {
                 input.checked = true;
