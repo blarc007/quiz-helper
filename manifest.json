@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Quiz Helper",
-  "version": "1.1",
-  "description": "自動掃描測驗題目與答案，並在作答頁面提供即時提示。",
+  "version": "1.2",
+  "description": "自動掃描測驗題目與答案，並在作答頁面提供即時提示。支援 CHT 平台與 Microsoft Forms。",
   "icons": {
     "16": "assets/icon.png",
     "48": "assets/icon.png",
@@ -15,7 +15,7 @@
   "permissions": ["activeTab", "storage"],
   "content_scripts": [
     {
-      "matches": ["*://*.cht.com.tw/*"],
+      "matches": ["*://*.cht.com.tw/*", "*://forms.cloud.microsoft/*"],
       "js": ["scripts/content.js"]
     }
   ]
