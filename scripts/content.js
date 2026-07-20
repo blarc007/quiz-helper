@@ -125,7 +125,9 @@ function scanCHT(sendResponse) {
       options.forEach((option) => {
         const correctImg = option.querySelector('img[src*="grade_answer"]');
         if (correctImg) {
-          const answerContent = option.querySelector('.flex-fill.ml-1')?.textContent.trim()
+          const answerContent = option.querySelector('.flex-fill.ms-1')?.textContent.trim()
+                             || option.querySelector('.flex-fill.ml-1')?.textContent.trim()
+                             || option.querySelector('.ms-1')?.textContent.trim()
                              || option.querySelector('.ml-1')?.textContent.trim() || '';
           if (answerContent) answer.push(answerContent);
         }
@@ -168,10 +170,14 @@ function hintCHT(sendResponse) {
         const answersToMatch = Array.isArray(match.answer) ? match.answer : [match.answer];
 
         options.forEach((option) => {
-          const optionText = option.querySelector('.ml-1')?.textContent.trim()
-                          || option.querySelector('.flex-fill.ml-1')?.textContent.trim() || '';
+          const optionText = option.querySelector('.flex-fill.ms-1')?.textContent.trim()
+                          || option.querySelector('.flex-fill.ml-1')?.textContent.trim()
+                          || option.querySelector('.ms-1')?.textContent.trim()
+                          || option.querySelector('.ml-1')?.textContent.trim() || '';
           if (answersToMatch.includes(optionText)) {
-            const dFlex = option.querySelector('.d-flex.w-100');
+            const dFlex = option.querySelector('[data-region="answer-label"]')
+                       || option.querySelector('.d-flex.w-auto')
+                       || option.querySelector('.d-flex.w-100');
             if (dFlex && !dFlex.querySelector('.quiz-helper-icon')) {
               const iconSpan = document.createElement('span');
               iconSpan.className = 'quiz-helper-icon';
